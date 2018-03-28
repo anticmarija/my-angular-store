@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './product/product.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -11,24 +13,38 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { UserComponent } from './user/user.component';
+import { AppRoutingModule } from '../app-routing.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthService } from '../auth.service';
+import { AuthGuard } from '../auth-guard.service';
+import { DataStorageService } from '../data-storage.service';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    ProductsComponent,
     ProductComponent,
     HeaderComponent,
     FooterComponent,
     CartComponent,
     CheckoutComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserComponent,
+    PageNotFoundComponent,
+    ProductDetailComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
+
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard, DataStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

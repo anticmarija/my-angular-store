@@ -5,11 +5,11 @@
       </div>
       <div class="nav navbar-nav navbar-right">
         <div>
-          <button class="shopping-cart"> Cart
+          <button class="shopping-cart" [routerLink]="['cart']"> Cart
             <span class="badge">3</span>
           </button>
-          <select>
-            <option value="guest">Guest</option>
+          <select (change) ="navigateTo($event.target.value)">
+            <option value="">Guest</option>
             <option value="login">Login</option>
             <option value="register">Register</option>
           </select>

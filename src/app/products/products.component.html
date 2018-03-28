@@ -13,8 +13,11 @@
   <div class="row" style="margin-top:70px;">
     <div class="col">
     </div>
-    <div class="col-8">
+    <div class="col-10">
       <h1>Landing</h1>
+      <div *ngFor="let product of products" class="col-4" style="float:left; margin-bottom:15px;">
+        <app-product [product]="product"></app-product>
+      </div>
     </div>
     <div class="col">
     </div>
