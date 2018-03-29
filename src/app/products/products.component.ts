@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataStorageService } from '../../data-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -9,14 +10,22 @@ import { DataStorageService } from '../../data-storage.service';
 export class ProductsComponent implements OnInit {
 
   products = [];
-  constructor(private dataStorageService: DataStorageService) { }
+  category;
+  constructor(private dataStorageService: DataStorageService, private router: Router) { }
 
   ngOnInit() {
     this.dataStorageService.getProducts()
     .subscribe((res: any[]) => {
-      console.log(res);
       this.products = res;
     })
+  }
+
+  moreDetails(id: number) {
+    this.router.navigate(['product', id]);
+  }
+
+  setCategory(cat) {
+    this.category = cat;
   }
 
 }

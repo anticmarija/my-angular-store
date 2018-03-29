@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, EventEmitter  } from '@angular/core';
 import { Input } from '@angular/core';
+import { Product } from '../models/product.model';
+import { Output } from '@angular/core';
 
 @Component({
   selector: 'app-product',
@@ -9,10 +10,16 @@ import { Input } from '@angular/core';
 })
 export class ProductComponent implements OnInit {
 
-  @Input() product: any;
-  constructor(private route: ActivatedRoute) { }
+  params: any;
+  @Input() product: Product;
+  @Output() moreDetails = new EventEmitter<number>();
+  constructor() { }
 
   ngOnInit() {
   }
 
+  onMoreDetails() {
+    console.log(this.product._id);
+    this.moreDetails.emit(this.product._id);
+  }
 }

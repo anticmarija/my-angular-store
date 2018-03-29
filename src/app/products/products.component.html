@@ -1,22 +1,11 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="btn-group">
-      <button type="button" class="btn btn-primary">Landing</button>
-      <button type="button" class="btn btn-default">Arcade</button>
-      <button type="button" class="btn btn-default">Adventure</button>
-      <button type="button" class="btn btn-default">Puzzle</button>
-      <button type="button" class="btn btn-default">RPG</button>
-      <button type="button" class="btn btn-default">Sports</button>
-      <button type="button" class="btn btn-default">Strategy</button>
-    </div>
-  </div>
-  <div class="row" style="margin-top:70px;">
+  <app-category></app-category>
+  <div id="productsArea" class="row" style="margin-top:70px;">
     <div class="col">
     </div>
     <div class="col-10">
-      <h1>Landing</h1>
       <div *ngFor="let product of products" class="col-4" style="float:left; margin-bottom:15px;">
-        <app-product [product]="product"></app-product>
+        <app-product [product]="product" (moreDetails)="moreDetails($event)"></app-product>
       </div>
     </div>
     <div class="col">

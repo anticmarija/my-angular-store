@@ -20,6 +20,7 @@ import { AuthService } from '../auth.service';
 import { AuthGuard } from '../auth-guard.service';
 import { DataStorageService } from '../data-storage.service';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { CategoryComponent } from './category/category.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     UserComponent,
     PageNotFoundComponent,
     ProductDetailComponent,
+    CategoryComponent,
   ],
   imports: [
     BrowserModule,

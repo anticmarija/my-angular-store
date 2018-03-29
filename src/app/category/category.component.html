@@ -1,0 +1,9 @@
+<div class="row">
+  <button type="button" *ngFor="let category of categories; let i = index;" class="btn btn-default" [class.btn-primary]="category.isActive"
+    (click)="activate(i)">
+    {{category.name}}
+  </button>
+</div>
+<div class="row">
+    <h3>{{activeCategory}}</h3>      
+</div>

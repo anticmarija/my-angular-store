@@ -9,7 +9,7 @@ body,
 
 .main-wrapper {
   min-height: 100%;
-  max-width: 99%;
+  max-width: 100%;
   position: relative;
 }
 
@@ -101,4 +101,8 @@ input.ng-invalid.ng-touched {
 
 .shopping-cart {
   margin-right: 15px;
+}
+
+#productsArea {
+  margin-bottom: 150px;
 }
