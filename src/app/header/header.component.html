@@ -5,9 +5,12 @@
       </div>
       <div class="nav navbar-nav navbar-right">
         <div>
-          <button class="shopping-cart" [routerLink]="['cart']"> Cart
-            <span class="badge">3</span>
+          <button class="btn btn-default" 
+          [routerLink]="['cart']"
+          *ngIf="authService.getToken() !== null"> Cart
+            <span class="badge">{{cartService.getCartProductsLength()}}</span>
           </button>
+          <button *ngIf="authService.getToken()" class="btn btn-default" (click)="authService.logout()">Logout</button>
           <select (change) ="navigateTo($event.target.value)">
             <option value="">Guest</option>
             <option value="login">Login</option>

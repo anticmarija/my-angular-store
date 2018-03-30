@@ -21,7 +21,7 @@ const appRoutes: Routes = [
     { path: 'checkout', component: CheckoutComponent },
     { path: 'user/:id', canActivate:[AuthGuard], component: UserComponent },
     { path: 'not-found', component: PageNotFoundComponent },
-    // { path: '**', redirectTo: '/not-found'}
+    { path: '**', redirectTo: '/not-found'}
 ]
 
 @NgModule({

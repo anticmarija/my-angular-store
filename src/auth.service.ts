@@ -1,16 +1,32 @@
-export class AuthService {
-    loggedIn: boolean;
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs/Observable";
+import { Observer } from "rxjs/Observer";
 
-    isAuthenticated() {
-       return Promise.resolve(true);
+
+@Injectable()
+export class AuthService {
+
+    constructor(private httpClient: HttpClient) { }
+
+    registerUser(username: string, email: string, address: string, password: string, confirmPassword: string) {
+        return this.httpClient.post('http://localhost:8000/store/user',
+            { username: username, email: email, password: password, status: address }); //da ne menjam na back-u!!!!!!!!!!!
     }
 
-    logIn() {
-        this.loggedIn = true;
-        console.log(this.loggedIn);        
+    isAuthenticated() {
+        return false;
+    }
+
+    loginUser(username:string, password:string) {
+        return this.httpClient.post('http://localhost:8000/store/auth/authenticateuser', {username:username, password:password});
+    }
+
+    getToken() {
+        return localStorage.getItem('token');
     }
 
     logout() {
-        this.loggedIn = false;
+        localStorage.removeItem('token');        
     }
 }

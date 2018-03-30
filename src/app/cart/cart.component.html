@@ -12,20 +12,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              ID
-            </td>
-            <td>
-              Product name
-            </td>
-            <td>
-              Product description
-            </td>
-            <td>
-              <button class="btn btn-danger remove-from-cart"> Remove from Cart
-              </button>
-            </td>
+          <tr *ngFor="let cartProduct of cartProducts">
+            <td>{{cartProduct._id}}</td>
+            <td>{{cartProduct.name}}</td>
+            <td>{{cartProduct.description}}</td>
+            <button class="btn btn-danger remove-from-cart"
+            (click) ="removeFromCart(cartProduct)"> Remove from Cart
+            </button>
           </tr>
         </tbody>
       </table>

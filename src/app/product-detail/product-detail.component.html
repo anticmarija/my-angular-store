@@ -16,10 +16,13 @@
             <p class="card-text">
               {{product.description}}
             </p>
-            <button class="btn btn-primary add-to-cart">
+            <button class="btn btn-primary add-to-cart" (click)="addToCart(product)"
+            *ngIf="!isInCart">
               Add to Cart
             </button>
-            <button class="btn btn-danger remove-from-cart"> Remove from Cart
+            <button class="btn btn-danger remove-from-cart"
+            (click)= "removeFromCart(product)"
+            *ngIf="isInCart"> Remove from Cart
             </button>
           </div>
         </div>

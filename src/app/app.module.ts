@@ -21,6 +21,7 @@ import { AuthGuard } from '../auth-guard.service';
 import { DataStorageService } from '../data-storage.service';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CategoryComponent } from './category/category.component';
+import { CartService } from './cart/cart.service';
 
 
 @NgModule({
@@ -46,7 +47,7 @@ import { CategoryComponent } from './category/category.component';
     HttpClientModule
 
   ],
-  providers: [AuthService, AuthGuard, DataStorageService],
+  providers: [AuthService, AuthGuard, DataStorageService, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
