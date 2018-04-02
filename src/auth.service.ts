@@ -2,12 +2,13 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { Observer } from "rxjs/Observer";
+import { Router } from "@angular/router";
 
 
 @Injectable()
 export class AuthService {
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient, private router: Router) { }
 
     registerUser(username: string, email: string, address: string, password: string, confirmPassword: string) {
         return this.httpClient.post('http://localhost:8000/store/user',
@@ -27,6 +28,7 @@ export class AuthService {
     }
 
     logout() {
-        localStorage.removeItem('token');        
+        localStorage.removeItem('token');   
+        this.router.navigate([''])     ;
     }
 }

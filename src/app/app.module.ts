@@ -22,6 +22,7 @@ import { DataStorageService } from '../data-storage.service';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CategoryComponent } from './category/category.component';
 import { CartService } from './cart/cart.service';
+import { PaginationComponent } from './pagination/pagination.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { CartService } from './cart/cart.service';
     PageNotFoundComponent,
     ProductDetailComponent,
     CategoryComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,

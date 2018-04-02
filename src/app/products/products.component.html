@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <app-category></app-category>
+  <app-category (onCategoryClick)="onCategoryClick($event)"></app-category>
   <div id="productsArea" class="row" style="margin-top:70px;">
     <div class="col">
     </div>
@@ -10,5 +10,8 @@
     </div>
     <div class="col">
     </div>
+  </div>
+  <div class="row">
+    <app-pagination ></app-pagination>
   </div>
 </div>
