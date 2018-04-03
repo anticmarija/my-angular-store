@@ -5,6 +5,10 @@ import { Product } from '../models/product.model';
 import { OnChanges, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Subscription } from 'rxjs/Subscription';
 import { PaginationComponent } from '../pagination/pagination.component';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+
+import * as fromApp from '../store/app.reducers'
 
 @Component({
   selector: 'app-products',
@@ -14,20 +18,22 @@ import { PaginationComponent } from '../pagination/pagination.component';
 })
 export class ProductsComponent implements OnInit, OnDestroy {
 
-  products: any;
+  state: Observable<{products:Product[]}>;
   productsNumber: number;
   subscription: Subscription;
   category;
-  constructor(private dataStorageService: DataStorageService, private router: Router) { }
+  constructor(private dataStorageService: DataStorageService, private router: Router, private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
-    this.dataStorageService.getProducts();
+    // this.dataStorageService.getProducts();
 
-    this.subscription = this.dataStorageService.getProductsObservable()
-      .subscribe((res) => {
-        this.products = res;
-        this.productsNumber = this.products.length;
-      })
+    // this.subscription = this.dataStorageService.getProductsObservable()
+    //   .subscribe((res) => {
+    //     this.products = res;
+    //     this.productsNumber = this.products.length;
+    //   })
+
+    this.state = this.store.select('productsList');
   }
 
   moreDetails(id: number) {

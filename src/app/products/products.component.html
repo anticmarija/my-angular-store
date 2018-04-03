@@ -4,7 +4,7 @@
     <div class="col">
     </div>
     <div class="col-10">
-      <div *ngFor="let product of products" class="col-4" style="float:left; margin-bottom:15px;">
+      <div *ngFor="let product of (state | async).products" class="col-4" style="float:left; margin-bottom:15px;">
         <app-product [product]="product" (moreDetails)="moreDetails($event)"></app-product>
       </div>
     </div>

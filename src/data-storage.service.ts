@@ -10,8 +10,7 @@ export class DataStorageService {
 
     subject = new Subject<any>();
 
-    products: any;
-    total = new Subject<number>();
+    products: Product[];
     pageNum = 1;
     perPage = 4;
     currentCategory = null;
@@ -41,6 +40,7 @@ export class DataStorageService {
                 .subscribe((res: any) => {
                     this.products = res;
                     console.log(res)
+                    this.currentCategory = category;
                     this.subject.next(this.products);
 
                 });
@@ -49,7 +49,6 @@ export class DataStorageService {
                 .subscribe((res: any) => {
                     this.products = res;
                     console.log(res);
-                    this.currentCategory = category;
                     this.subject.next(this.products);
                 });
         }

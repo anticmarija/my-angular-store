@@ -26,7 +26,7 @@ export class PaginationComponent implements OnInit {
 
   changeProducts(pageNum: number) {
     this.dataStorageService.updatePage(pageNum);
-    this.dataStorageService.getProducts(pageNum, this.dataStorageService.perPage);
+    this.dataStorageService.getProducts(pageNum, this.dataStorageService.perPage, this.dataStorageService.currentCategory);
   }
 
 }
