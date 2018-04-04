@@ -30,21 +30,6 @@ export class RegisterComponent implements OnInit {
     let password = form.value.password;
     let confirmPassword = form.value.confirmPassword;
 
-    // if(password !== confirmPassword) {
-    //   this.userCreated= true;
-    //   this.msg = "Passwords don't match";
-    //   return;
-    // }
-
     this.store.dispatch(new AuthActions.TryRegister( { username: username, email: email, status: address, password: password, confirmPassword: password }))
-    // this.authService.registerUser(username, email, address, password, confirmPassword)
-    // .subscribe((data: any) => {
-    //   console.log(data);
-    //   if(data.data.message === 'User successfully created.') {
-    //     this.userCreated = true;
-    //     this.msg = data.data.message;
-    //     form.reset();
-    //   }
-    // });
   }
 }

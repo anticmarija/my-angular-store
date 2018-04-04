@@ -6,18 +6,18 @@ export interface State {
 }
 
 const initialState: State = {
-    products: [
-    ]
+    products: []
 };
 
-export const GET_PRODUCTS = "GET_PRODUCTS";
+export const SET_PRODUCTS = "SET_PRODUCTS";
+
 export function productsReducer(state = initialState, action: ProductsActions.ProductsActions) {
 
     switch (action.type) {
-        case ProductsActions.GET_PRODUCTS:
+        case ProductsActions.SET_PRODUCTS:
             return {
                 ...state,
-
+                ...action.payload
             }
         default:
             return state;

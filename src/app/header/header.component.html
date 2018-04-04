@@ -10,7 +10,7 @@
           *ngIf="(authState | async).authenticated"> Cart
             <span class="badge">{{cartService.getCartProductsLength()}}</span>
           </button>
-          <button *ngIf="(authState | async).authenticated" class="btn btn-default" (click)="authService.logout()">Logout</button>
+          <button *ngIf="(authState | async).authenticated" class="btn btn-default" (click)="onLogout()">Logout</button>
           <select (change) ="navigateTo($event.target.value)">
             <option value="">Guest</option>
             <option value="login">Login</option>

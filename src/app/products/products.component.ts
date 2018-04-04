@@ -8,6 +8,7 @@ import { PaginationComponent } from '../pagination/pagination.component';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
+import * as ProductActions from "./store/products.actions"
 import * as fromApp from '../store/app.reducers'
 
 @Component({
@@ -33,6 +34,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     //     this.productsNumber = this.products.length;
     //   })
 
+    this.store.dispatch(new ProductActions.GetProducts());
+    
     this.state = this.store.select('productsList');
   }
 
