@@ -12,15 +12,18 @@ export class AuthEffects {
     authRegister = this.actions$
         .ofType(AuthActions.TRY_REGISTER)
         .map((action: AuthActions.TryRegister) => {
-            return action.payload;
+            return action.payload;           
         })
-        .switchMap((authData: {username: string, email: string, address: string, password: string, confirmPassword: string}) => {
+        .map((authData: {username: string, email: string, status: string, password: string, confirmPassword: string}) => {
             return this.authService.registerUser(authData);
         })
-        .mergeMap((res:any) => {
-            return {
-                type:   
-            };
+        .switchMap((res: any) => {
+            return [
+                {
+                    type: AuthActions.REGISTER,
+                    payload: res.data.msg
+                }
+            ]
         })
 
     constructor(private actions$: Actions, private authService: AuthService) { }

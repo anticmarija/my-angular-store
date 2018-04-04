@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
   onRegister(form: NgForm) {
     let username = form.value.username;
     let email = form.value.email;
-    let address = form.value.address;
+    let address = form.value.addr;
     let password = form.value.password;
     let confirmPassword = form.value.confirmPassword;
 
@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
     //   return;
     // }
 
-    this.store.dispatch(new AuthActions.TryRegister( { username: username, email: email, address: address, password: password, confirmPassword: password }))
+    this.store.dispatch(new AuthActions.TryRegister( { username: username, email: email, status: address, password: password, confirmPassword: password }))
     // this.authService.registerUser(username, email, address, password, confirmPassword)
     // .subscribe((data: any) => {
     //   console.log(data);
