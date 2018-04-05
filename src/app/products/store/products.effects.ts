@@ -13,7 +13,7 @@ export class ProductsEffects {
     @Effect()
     getProducts = this.actions$
         .ofType(ProductsActions.GET_PRODUCTS)
-        .map(() => {
+        .switchMap(() => {
             return this.dataStorageService.getProducts();
         })
         .switchMap((res: any) => {

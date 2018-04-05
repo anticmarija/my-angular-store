@@ -36,21 +36,21 @@ export class DataStorageService {
 
     getProducts(pageNum = this.pageNum, perPage = this.perPage, category = null) {
         if (category !== null) {
-            this.httpClient.get('http://localhost:8000/store/product', { params: { 'pageNum': pageNum + '', 'perPage': perPage + '', 'category.name': category } })
-                .subscribe((res: any) => {
-                    this.products = res;
-                    console.log(res)
-                    this.currentCategory = category;
-                    this.subject.next(this.products);
+            return this.httpClient.get('http://localhost:8000/store/product', { params: { 'pageNum': pageNum + '', 'perPage': perPage + '', 'category.name': category } })
+                // .subscribe((res: any) => {
+                //     this.products = res;
+                //     console.log(res)
+                //     this.currentCategory = category;
+                //     this.subject.next(this.products);
 
-                });
+                // });
         } else {
-            this.httpClient.get('http://localhost:8000/store/product', { params: { 'pageNum': pageNum + '', 'perPage': perPage + '' } })
-                .subscribe((res: any) => {
-                    this.products = res;
-                    console.log(res);
-                    this.subject.next(this.products);
-                });
+          return  this.httpClient.get('http://localhost:8000/store/product', { params: { 'pageNum': pageNum + '', 'perPage': perPage + '' } })
+                // .subscribe((res: any) => {
+                //     this.products = res;
+                //     console.log(res);
+                //     this.subject.next(this.products);
+                // });
         }
     }
 

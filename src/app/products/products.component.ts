@@ -8,7 +8,7 @@ import { PaginationComponent } from '../pagination/pagination.component';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import * as ProductActions from "./store/products.actions"
+import * as ProductsActions from "./store/products.actions"
 import * as fromApp from '../store/app.reducers'
 
 @Component({
@@ -19,11 +19,14 @@ import * as fromApp from '../store/app.reducers'
 })
 export class ProductsComponent implements OnInit, OnDestroy {
 
-  state: Observable<{products:Product[]}>;
+  state: Observable<any>;
+  products: Product[];
   productsNumber: number;
   subscription: Subscription;
   category;
-  constructor(private dataStorageService: DataStorageService, private router: Router, private store: Store<fromApp.AppState>) { }
+  constructor(private dataStorageService: DataStorageService, private router: Router, private store: Store<fromApp.AppState>) { 
+    this.state = this.store.select('productsList');
+  }
 
   ngOnInit() {
     // this.dataStorageService.getProducts();
@@ -33,10 +36,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
     //     this.products = res;
     //     this.productsNumber = this.products.length;
     //   })
+    // this.state = this.store.select('productsList');
+    this.store.dispatch(new ProductsActions.GetProducts())
 
-    this.store.dispatch(new ProductActions.GetProducts());
-    
-    this.state = this.store.select('productsList');
   }
 
   moreDetails(id: number) {

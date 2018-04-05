@@ -27,6 +27,7 @@ import { authReducer } from './auth/store/auth.reducers';
 import {reducers} from "./store/app.reducers";
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './auth/store/auth.effects';
+import { ProductsEffects } from './products/store/products.effects';
 
 
 @NgModule({
@@ -51,7 +52,7 @@ import { AuthEffects } from './auth/store/auth.effects';
     FormsModule,
     HttpClientModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([AuthEffects])
+    EffectsModule.forRoot([AuthEffects, ProductsEffects])
 
   ],
   providers: [AuthService, DataStorageService, CartService],
