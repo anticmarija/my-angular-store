@@ -19,7 +19,6 @@ export class ProductComponent implements OnInit {
   }
 
   onMoreDetails() {
-    console.log(this.product._id);
     this.moreDetails.emit(this.product._id);
   }
 }

@@ -2,6 +2,10 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Category } from '../models/category.model';
 import { DataStorageService } from '../../data-storage.service';
 import { Output } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../store/app.reducers';
+import * as ProductsActions from "../products/store/products.actions";
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-category',
@@ -10,20 +14,20 @@ import { Output } from '@angular/core';
 })
 export class CategoryComponent implements OnInit {
 
+  state: Observable<any>;
   @Output() onCategoryClick = new EventEmitter<string>();
   categories: Category[];
   activeCategory: string;
-  constructor(private dataStorageService: DataStorageService) { }
+  constructor(private dataStorageService: DataStorageService, private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
-    this.dataStorageService.getCategories()
-      .subscribe((res: any[]) => {
-        this.categories = res;
-        // this.activeCategory = res[0].name;
-        // for (let c in this.categories) {
-        //   +c === 0 ? this.categories[c].isActive = true : this.categories[c].isActive = false
-        // }
-      })
+    this.state = this.store.select('productsList');
+
+    this.store.dispatch(new ProductsActions.GetCategories())
+
+    this.state.subscribe((res)=> {
+      this.categories = res.categories;
+    })
   }
 
   activate(category) {

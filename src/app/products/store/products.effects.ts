@@ -17,14 +17,42 @@ export class ProductsEffects {
             return this.dataStorageService.getProducts();
         })
         .switchMap((res: any) => {
-            console.log(res);
             return [
                 {
                     type: ProductsActions.SET_PRODUCTS,
                     payload: res
                 }
             ]
-        })
+        });
 
-    constructor(private actions$: Actions, private dataStorageService : DataStorageService) { }
+    @Effect()
+    getCategories = this.actions$
+        .ofType(ProductsActions.GET_CATEGORIES)
+        .switchMap(() => {
+            return this.dataStorageService.getCategories();
+        })
+        .switchMap((res: any) => {
+            return [
+                {
+                    type: ProductsActions.SET_CATEGORIES,
+                    payload: res
+                }
+            ]
+        })
+    @Effect()
+    getProductsByCat = this.actions$
+        .ofType(ProductsActions.GET_PRODUCTS_BY_CAT)
+        .switchMap((payload: any) => {
+            return this.dataStorageService.getProductsByCat(payload.payload);
+        })
+        .switchMap((res: any) => {
+            return [
+                {
+                    type: ProductsActions.SET_PRODUCTS,
+                    payload: res
+                }
+            ]
+        });
+
+    constructor(private actions$: Actions, private dataStorageService: DataStorageService) { }
 }
