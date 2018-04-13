@@ -2,6 +2,8 @@ import {Action} from "@ngrx/store";
 
 export const SET_PRODUCTS = "SET_PRODUCTS";
 export const GET_PRODUCTS = "GET_PRODUCTS";
+export const SET_PRODUCTS_PER_PAGE = "SET_PRODUCTS_PER_PAGE";
+
 export const GET_PRODUCTS_BY_CAT = "GET_PRODUCTS_BY_CAT";
 export const GET_CATEGORIES = "GET_CATEGORIES";
 export const SET_CATEGORIES = "SET_CATEGORIES";
@@ -33,5 +35,10 @@ export class GetCategories implements Action {
     readonly type = GET_CATEGORIES;
 }
 
+export class SetProductsPerPage implements Action {
+    readonly type = SET_PRODUCTS_PER_PAGE;
 
-export type ProductsActions = SetProducts | GetProducts | GetCategories | SetCategories;
+    constructor(public payload: any) {}
+}
+
+export type ProductsActions = SetProducts | GetProducts | GetCategories | SetCategories | SetProductsPerPage;

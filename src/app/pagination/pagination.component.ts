@@ -21,7 +21,7 @@ export class PaginationComponent implements OnInit {
         this.pageIndexes = [];
         let productNumber = res.productsLength;
         let j = 1;
-        for (let i = 1; i <= productNumber; i += this.dataStorageService.perPage) {
+        for (let i = 1; i <= productNumber; i += res.perPage) {
           this.pageIndexes.push(j++);
         }
       })

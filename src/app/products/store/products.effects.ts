@@ -21,6 +21,10 @@ export class ProductsEffects {
                 {
                     type: ProductsActions.SET_PRODUCTS,
                     payload: res
+                },
+                {
+                    type: ProductsActions.SET_PRODUCTS_PER_PAGE,
+                    payload: res
                 }
             ]
         });
@@ -49,6 +53,10 @@ export class ProductsEffects {
             return [
                 {
                     type: ProductsActions.SET_PRODUCTS,
+                    payload: res
+                },
+                {
+                    type: ProductsActions.SET_PRODUCTS_PER_PAGE,
                     payload: res
                 }
             ]

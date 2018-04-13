@@ -5,16 +5,20 @@ import { Category } from '../../models/category.model';
 export interface State {
     products: Product[],
     productsLength: number,
-    categories: Category[]
+    categories: Category[],
+    productsOnPage: Product[],
+    perPage: number,
+    pageNum: number
 }
 
 const initialState: State = {
     products: [],
     productsLength: 0,
-    categories: []
+    categories: [],
+    productsOnPage: [],
+    perPage: 6,
+    pageNum: 1
 };
-
-// export const SET_PRODUCTS = "SET_PRODUCTS";
 
 export function productsReducer(state = initialState, action: ProductsActions.ProductsActions) {
 
@@ -29,6 +33,14 @@ export function productsReducer(state = initialState, action: ProductsActions.Pr
             return {
                 ...state,
                 categories: action.payload,
+            }
+        case ProductsActions.SET_PRODUCTS_PER_PAGE:
+        let perPage = state.perPage;
+        let pageNum = state.pageNum;
+
+            return {
+                ...state,
+                productsOnPage: action.payload.slice(pageNum*perPage-perPage, perPage)
             }
         default:
             return state;

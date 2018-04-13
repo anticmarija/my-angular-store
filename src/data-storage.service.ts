@@ -25,13 +25,13 @@ export class DataStorageService {
         return this.httpClient.get('http://localhost:8000/store/product');
     }
 
-    // getProducts(pageNum = this.pageNum, perPage = this.perPage, category = null) {
-    //     if (category !== null) {
-    //         return this.httpClient.get('http://localhost:8000/store/product', { params: { 'pageNum': pageNum + '', 'perPage': perPage + '', 'category.name': category } })
-    //     } else {
-    //       return  this.httpClient.get('http://localhost:8000/store/product', { params: { 'pageNum': pageNum + '', 'perPage': perPage + '' } })
-    //     }
-    // }
+    getProductsPerPage(pageNum = this.pageNum, perPage = this.perPage, category = null) {
+        if (category !== null) {
+            return this.httpClient.get('http://localhost:8000/store/product', { params: { 'pageNum': pageNum + '', 'perPage': perPage + '', 'category.name': category } })
+        } else {
+          return  this.httpClient.get('http://localhost:8000/store/product', { params: { 'pageNum': pageNum + '', 'perPage': perPage + '' } })
+        }
+    }
 
     getProductsByCat(category) {
         return this.httpClient.get('http://localhost:8000/store/product', { params: { 'category.name': category } })
