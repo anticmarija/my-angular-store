@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from '../cart/cart.service';
+import { Product } from '../models/product.model';
+import { DataStorageService } from '../../data-storage.service';
 
 @Component({
   selector: 'app-checkout',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor() { }
+  cartProducts: Product[] = [];
+  totalPrice = 0;
+  message = null;
+  constructor(private cartService: CartService, private dataStorage: DataStorageService) { }
 
   ngOnInit() {
+    this.cartProducts = this.cartService.getCartProducts();
+
+    for (let p of this.cartProducts) {
+      this.totalPrice += p.price;
+    }
   }
 
+  onOrder() {
+    this.dataStorage.postPurchase(this.cartProducts).subscribe((res: any) => {
+      this.message = res.data.message;
+    })
+  }
 }

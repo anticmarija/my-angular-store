@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { Product } from "./app/models/product.model";
 import { Subject } from "rxjs/Subject";
@@ -42,5 +42,18 @@ export class DataStorageService {
 
     getCategories() {
         return this.httpClient.get('http://localhost:8000/store/categories');
+    }
+
+    postPurchase(products: Product[]) {
+        const token = localStorage.getItem('token');
+        const headers = new HttpHeaders({ 'x-auth': token });
+        return this.httpClient.post('http://localhost:8000/store/purchases',
+            { purchase: products }, { headers: headers });
+    }
+
+    getPurchases() {
+        const token = localStorage.getItem('token');
+        const headers = new HttpHeaders({ 'x-auth': token });
+        return this.httpClient.get('http://localhost:8000/store/purchases', { headers: headers });
     }
 }

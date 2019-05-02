@@ -9,6 +9,7 @@ import { RouterModule } from "@angular/router";
 import { NgModule } from "@angular/core";
 import { PageNotFoundComponent } from "./app/page-not-found/page-not-found.component";
 import { ProductDetailComponent } from "./app/product-detail/product-detail.component";
+import { PurchasesComponent } from "./app/purchases/purchases.component";
 
 const appRoutes: Routes = [
     { path: '', component: ProductsComponent },
@@ -17,8 +18,9 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'cart', component: CartComponent },
     { path: 'checkout', component: CheckoutComponent },
+    { path: 'purchases', component: PurchasesComponent },
     { path: 'not-found', component: PageNotFoundComponent },
-    { path: '**', redirectTo: '/not-found'}
+    { path: '**', redirectTo: '/not-found' }
 ]
 
 @NgModule({

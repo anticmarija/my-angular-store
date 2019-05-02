@@ -28,6 +28,7 @@ import {reducers} from "./store/app.reducers";
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './auth/store/auth.effects';
 import { ProductsEffects } from './products/store/products.effects';
+import { PurchasesComponent } from './purchases/purchases.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { ProductsEffects } from './products/store/products.effects';
     ProductDetailComponent,
     CategoryComponent,
     PaginationComponent,
+    PurchasesComponent,
   ],
   imports: [
     BrowserModule,

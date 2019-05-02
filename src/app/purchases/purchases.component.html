@@ -1,0 +1,11 @@
+<div>
+  <div class="row">
+    <h1>Products you have ordered</h1>
+    <hr />
+  </div>
+  <div *ngFor="let purchase of purchases">
+    <div *ngFor="let products of purchase.purchase">
+      <p>{{products.name}}<p>
+    </div>
+  </div>
+</div>

@@ -13,6 +13,10 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
-    this.store.dispatch(new AuthActions.Login(localStorage.getItem('token')));
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      this.store.dispatch(new AuthActions.Login(token));
+    }
   }
 }
