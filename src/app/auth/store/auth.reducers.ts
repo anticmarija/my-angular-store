@@ -30,12 +30,15 @@ export function authReducer(state = initialState, action: AuthActions.AuthAction
             };
 
         case (AuthActions.LOGOUT):
+            localStorage.removeItem('token');
             return {
                 ...state,
                 token: null,
                 authenticated: false
             };
         case (AuthActions.SET_TOKEN):
+            localStorage.setItem('token', action.payload);
+
             return {
                 ...state,
                 token: action.payload

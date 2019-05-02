@@ -1,9 +1,10 @@
 <div class="row">
-  <button type="button" *ngFor="let category of (state | async).categories; let i = index;" class="btn btn-default" [class.btn-primary]="category.isActive"
+  <button type="button" *ngFor="let category of (state | async).categories; let i = index;" class="btn btn-default"
+    [class.btn-primary]="category.isActive" [routerLink]="['/']" [queryParams]="{category: category.name }"
     (click)="activate(category)">
     {{category.name}}
   </button>
 </div>
 <div class="row">
-    <h3>{{activeCategory}}</h3>      
+  <h3>{{activeCategory}}</h3>
 </div>

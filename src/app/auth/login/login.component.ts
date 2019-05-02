@@ -12,20 +12,17 @@ import * as fromApp from "../../store/app.reducers";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  username:string;
-  password:string;
+  username: string;
+  password: string;
 
   constructor(private authService: AuthService, private router: Router, private store: Store<fromApp.AppState>) { }
-
-  ngOnInit() {
-  }
 
   onLogin(form: NgForm) {
     let username = form.value.username;
     let password = form.value.password;
 
-    this.store.dispatch(new AuthActions.TryLogin({username, password}));      
+    this.store.dispatch(new AuthActions.TryLogin({ username, password }));
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataStorageService } from '../../data-storage.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Product } from '../models/product.model';
 import { OnChanges, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Subscription } from 'rxjs/Subscription';
@@ -26,8 +26,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
   category;
   loading: boolean;
 
-  constructor(private dataStorageService: DataStorageService, private router: Router, private store: Store<fromApp.AppState>) {
+  constructor(private router: Router, private store: Store<fromApp.AppState>) {
     this.state = this.store.select('productsList');
+
   }
 
   ngOnInit() {
@@ -40,6 +41,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     //   })
     this.state = this.store.select('productsList');
     this.store.dispatch(new ProductsActions.GetProducts())
+
 
     this.state
       .subscribe((res) => {
@@ -63,7 +65,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   onCategoryClick(category) {
     this.loading = true;
-    this.store.dispatch(new ProductsActions.GetProductsByCat(category));
+    category ? this.store.dispatch(new ProductsActions.GetProductsByCat(category))
+      : this.store.dispatch(new ProductsActions.GetProducts());
+
     // this.dataStorageService.getProducts(this.dataStorageService.pageNum, this.dataStorageService.perPage, category);
   }
 }

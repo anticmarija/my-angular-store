@@ -12,9 +12,9 @@ export class AuthService {
 
     constructor(private httpClient: HttpClient, private router: Router, private store: Store<fromApp.AppState>) { }
 
-    registerUser(authData: { username: string, email: string, status: string, password: string, confirmPassword: string }) {
+    registerUser(authData: { username: string, email: string, password: string, confirmPassword: string }) {
         return this.httpClient.post('http://localhost:8000/store/users',
-            { username: authData.username, email: authData.email, password: authData.password, status: authData.status }) //da ne menjam na back-u!!!!!!!!!!!
+            { username: authData.username, email: authData.email, password: authData.password }) //da ne menjam na back-u!!!!!!!!!!!
 
     }
 

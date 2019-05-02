@@ -15,13 +15,12 @@ export class AuthEffects {
     authRegister = this.actions$
         .ofType(AuthActions.TRY_REGISTER)
         .map((action: AuthActions.TryRegister) => {
-            return action.payload;           
+            return action.payload;
         })
-        .switchMap((authData: {username: string, email: string, status: string, password: string, confirmPassword: string}) => {
+        .switchMap((authData: { username: string, email: string, password: string, confirmPassword: string }) => {
             return this.authService.registerUser(authData);
         })
         .switchMap((res: any) => {
-            console.log(res);
             return [
                 {
                     type: AuthActions.REGISTER,
@@ -34,9 +33,9 @@ export class AuthEffects {
     authLogin = this.actions$
         .ofType(AuthActions.TRY_LOGIN)
         .map((action: AuthActions.TryLogin) => {
-            return action.payload;           
+            return action.payload;
         })
-        .switchMap((authData: {username: string, password: string}) => {
+        .switchMap((authData: { username: string, password: string }) => {
             return this.authService.loginUser(authData);
         })
         .switchMap((res: any) => {
@@ -52,7 +51,7 @@ export class AuthEffects {
             ]
         });
 
-    @Effect({dispatch: false})
+    @Effect({ dispatch: false })
     authLogout = this.actions$
         .ofType(AuthActions.LOGOUT)
         .do(() => {

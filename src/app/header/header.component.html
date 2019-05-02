@@ -6,11 +6,12 @@
     <div class="nav navbar-nav navbar-right">
       <div>
         <button class="btn btn-default" [routerLink]="['cart']">Cart
-          <!-- *ngIf="(authState | async).authenticated"> Cart -->
           <span class="badge">{{cartService.getCartProductsLength()}}</span>
         </button>
+        <button *ngIf="(authState | async).authenticated" class="btn btn-default"
+          [routerLink]="['purchases']">Purchases</button>
         <button *ngIf="(authState | async).authenticated" class="btn btn-default" (click)="onLogout()">Logout</button>
-        <select (change)="navigateTo($event.target.value)">
+        <select *ngIf="!(authState | async).authenticated" (change)="navigateTo($event.target.value)">
           <option value="">Guest</option>
           <option value="login">Login</option>
           <option value="register">Register</option>

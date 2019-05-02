@@ -1,7 +1,7 @@
 import { Action } from "@ngrx/store";
 
 export const TRY_REGISTER = "TRY_REGISTER";
-export const TRY_LOGIN= "TRY_LOGIN";
+export const TRY_LOGIN = "TRY_LOGIN";
 export const REGISTER = 'REGISTER';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
@@ -11,13 +11,13 @@ export const SET_TOKEN = 'SET_TOKEN';
 export class TryRegister implements Action {
     readonly type = TRY_REGISTER;
 
-    constructor(public payload: { username: string, email: string, status: string, password: string, confirmPassword: string }) {}
+    constructor(public payload: { username: string, email: string, password: string, confirmPassword: string }) { }
 }
 
 export class TryLogin implements Action {
     readonly type = TRY_LOGIN;
 
-    constructor(public payload: { username: string, password: string }) {}
+    constructor(public payload: { username: string, password: string }) { }
 }
 
 export class Register implements Action {
