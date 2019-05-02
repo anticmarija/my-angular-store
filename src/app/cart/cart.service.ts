@@ -13,7 +13,9 @@ export class CartService {
   }
 
   addToCart(product: Product) {
-    this.cartProducts.push(product);
+    if (this.cartProducts.filter(e => e.name === product.name).length === 0) {
+      this.cartProducts.push(product);
+    }
   }
 
   getCartProductsLength() {
@@ -21,7 +23,7 @@ export class CartService {
   }
 
   removeFromCart(product: Product) {
-    for(let i = 0; i < this.cartProducts.length; i++) {
+    for (let i = 0; i < this.cartProducts.length; i++) {
       if (this.cartProducts[i]._id === product._id) {
         this.cartProducts.splice(i, 1);
       }

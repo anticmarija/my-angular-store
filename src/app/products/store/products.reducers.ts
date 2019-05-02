@@ -4,6 +4,7 @@ import { Category } from '../../models/category.model';
 
 export interface State {
     products: Product[],
+    loading: boolean,
     productsLength: number,
     categories: Category[],
     productsOnPage: Product[],
@@ -11,8 +12,9 @@ export interface State {
     pageNum: number
 }
 
-const initialState: State = {
+export const initialState: State = {
     products: [],
+    loading: true,
     productsLength: 0,
     categories: [],
     productsOnPage: [],
@@ -27,7 +29,8 @@ export function productsReducer(state = initialState, action: ProductsActions.Pr
             return {
                 ...state,
                 products: action.payload,
-                productsLength: action.payload.length
+                productsLength: action.payload.length,
+                loading: false
             }
         case ProductsActions.SET_CATEGORIES:
             return {
@@ -35,12 +38,12 @@ export function productsReducer(state = initialState, action: ProductsActions.Pr
                 categories: action.payload,
             }
         case ProductsActions.SET_PRODUCTS_PER_PAGE:
-        let perPage = state.perPage;
-        let pageNum = state.pageNum;
+            let perPage = state.perPage;
+            let pageNum = state.pageNum;
 
             return {
                 ...state,
-                productsOnPage: action.payload.slice(pageNum*perPage-perPage, perPage)
+                productsOnPage: action.payload.slice(pageNum * perPage - perPage, perPage)
             }
         default:
             return state;

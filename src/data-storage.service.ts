@@ -11,38 +11,36 @@ export class DataStorageService {
     subject = new Subject<any>();
 
     products: Product[];
-    pageNum = 1;
-    perPage = 4;
     currentCategory = null;
 
     constructor(private httpClient: HttpClient) { }
 
-    updatePage(pageNum) {
-        this.pageNum = pageNum;
-    }
+    // updatePage(pageNum) {
+    //     this.pageNum = pageNum;
+    // }
 
     getProducts() {
-        return this.httpClient.get('http://localhost:8000/store/product');
+        return this.httpClient.get('http://localhost:8000/store/products');
     }
 
-    getProductsPerPage(pageNum = this.pageNum, perPage = this.perPage, category = null) {
+    getProductsPerPage(category = null) {
         if (category !== null) {
-            return this.httpClient.get('http://localhost:8000/store/product', { params: { 'pageNum': pageNum + '', 'perPage': perPage + '', 'category.name': category } })
+            return this.httpClient.get('http://localhost:8000/store/products', { params: { 'category': category } })
         } else {
-          return  this.httpClient.get('http://localhost:8000/store/product', { params: { 'pageNum': pageNum + '', 'perPage': perPage + '' } })
+            return this.httpClient.get('http://localhost:8000/store/products')
         }
     }
 
     getProductsByCat(category) {
-        return this.httpClient.get('http://localhost:8000/store/product', { params: { 'category.name': category } })
+        return this.httpClient.get('http://localhost:8000/store/products', { params: { 'category': category } })
     }
 
     getProduct(id) {
         let params = new HttpParams().set('id', id);
-        return this.httpClient.get('http://localhost:8000/store/product', { params: params });
+        return this.httpClient.get('http://localhost:8000/store/products', { params: params });
     }
 
     getCategories() {
-        return this.httpClient.get('http://localhost:8000/store/category');
+        return this.httpClient.get('http://localhost:8000/store/categories');
     }
 }

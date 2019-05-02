@@ -15,7 +15,7 @@ import { CartService } from '../cart/cart.service';
 export class ProductDetailComponent implements OnInit {
 
   product: Product;
-  id: number;
+  id: string;
   isInCart = false;
 
   constructor(private dataStorageService: DataStorageService,
@@ -25,14 +25,18 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params
       .subscribe(
-      (params: Params) => {
-        this.id = +params['id'];
-        this.dataStorageService.getProduct(this.id)
-          .subscribe((res: Product) => {
-            this.product = res[0];
-          });
-      }
+        (params: Params) => {
+          this.id = params['id'];
+          this.dataStorageService.getProduct(this.id)
+            .subscribe((res: Product) => {
+
+              this.product = res[0];
+              this.isInCart = this.cartService.cartProducts.filter(e => e.name === this.product.name).length > 0;
+
+            });
+        }
       );
+
   }
 
   addToCart(product: Product) {

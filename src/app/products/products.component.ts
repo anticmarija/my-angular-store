@@ -24,8 +24,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
   productsNumber: number;
   subscription: Subscription;
   category;
+  loading: boolean;
 
-  constructor(private dataStorageService: DataStorageService, private router: Router, private store: Store<fromApp.AppState>) { 
+  constructor(private dataStorageService: DataStorageService, private router: Router, private store: Store<fromApp.AppState>) {
     this.state = this.store.select('productsList');
   }
 
@@ -41,9 +42,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.store.dispatch(new ProductsActions.GetProducts())
 
     this.state
-    .subscribe((res)=> {
-      this.products = res.products;
-    })
+      .subscribe((res) => {
+        this.products = res.products;
+        this.loading = res.loading;
+      })
 
   }
 
@@ -60,7 +62,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   onCategoryClick(category) {
-
+    this.loading = true;
     this.store.dispatch(new ProductsActions.GetProductsByCat(category));
     // this.dataStorageService.getProducts(this.dataStorageService.pageNum, this.dataStorageService.perPage, category);
   }

@@ -1,22 +1,21 @@
-  <nav class="navbar navbar-default">
-    <div class="container">
-      <div class="navbar-header">
-        <img alt="Levi9" src="https://www.levi9.com/wp-content/uploads/2017/08/levi9blue-1-134x150.png" routerLink="/">
-      </div>
-      <div class="nav navbar-nav navbar-right">
-        <div>
-          <button class="btn btn-default" 
-          [routerLink]="['cart']"
-          *ngIf="(authState | async).authenticated"> Cart
-            <span class="badge">{{cartService.getCartProductsLength()}}</span>
-          </button>
-          <button *ngIf="(authState | async).authenticated" class="btn btn-default" (click)="onLogout()">Logout</button>
-          <select (change) ="navigateTo($event.target.value)">
-            <option value="">Guest</option>
-            <option value="login">Login</option>
-            <option value="register">Register</option>
-          </select>
-        </div>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <img alt="Levi9" src="https://www.levi9.com/wp-content/uploads/2017/08/levi9blue-1-134x150.png" routerLink="/">
+    </div>
+    <div class="nav navbar-nav navbar-right">
+      <div>
+        <button class="btn btn-default" [routerLink]="['cart']">Cart
+          <!-- *ngIf="(authState | async).authenticated"> Cart -->
+          <span class="badge">{{cartService.getCartProductsLength()}}</span>
+        </button>
+        <button *ngIf="(authState | async).authenticated" class="btn btn-default" (click)="onLogout()">Logout</button>
+        <select (change)="navigateTo($event.target.value)">
+          <option value="">Guest</option>
+          <option value="login">Login</option>
+          <option value="register">Register</option>
+        </select>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>

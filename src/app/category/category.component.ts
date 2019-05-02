@@ -5,7 +5,7 @@ import { Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../store/app.reducers';
 import * as ProductsActions from "../products/store/products.actions";
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-category',
@@ -25,18 +25,19 @@ export class CategoryComponent implements OnInit {
 
     this.store.dispatch(new ProductsActions.GetCategories())
 
-    this.state.subscribe((res)=> {
+    this.state.subscribe((res) => {
       this.categories = res.categories;
     })
+
   }
 
   activate(category) {
-    for (let c in this.categories) {
-      if (+c === +category._id-1) {
-        this.categories[c].isActive = true;
-        this.activeCategory = this.categories[c].name;
+    for (let c of this.categories) {
+      if (c.name === category.name) {
+        c.isActive = true;
+        this.activeCategory = c.name;
       } else {
-        this.categories[c].isActive = false;
+        c.isActive = false;
       }
     }
     this.onCategoryClick.emit(category.name);
